@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import extractFromHash from './util/extractFromHash';
-import './App.css';
+import createLoginUrl from './util/createLoginUrl';
+import extractFromHash from '../../util/extractFromHash';
 
 const ACCESSTOKEN_LOCALSTORAGE_KEY = 'accessToken';
-
-const createLoginUrl = () => {
-  const AUTHORIZE_URI = process.env.REACT_APP_SPOTIFY_AUTHORIZE_URI || '';
-  const AUTHORIZE_PARAMETERS: Record<string, string> = {
-    response_type: 'token',
-    client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID || '',
-    redirect_uri: process.env.REACT_APP_SPOTIFY_REDIRECT_URI || 'http://localhost:3000',
-  }
-
-  return `${AUTHORIZE_URI}?${new URLSearchParams(AUTHORIZE_PARAMETERS).toString()}`;
-}
+const loginUrl = createLoginUrl();
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -33,7 +23,7 @@ const App = () => {
 
   if (!isLoggedIn) return (
       <div className='App'>
-        <a href={createLoginUrl()}>Login</a>
+        <a href={loginUrl}>Login</a>
       </div>
   )
 
