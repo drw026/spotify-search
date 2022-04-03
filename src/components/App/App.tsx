@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import createLoginUrl from './util/createLoginUrl';
 import extractFromHash from '../../util/extractFromHash';
+import Search from '../Search/Search';
 
 const ACCESSTOKEN_LOCALSTORAGE_KEY = 'accessToken';
 const loginUrl = createLoginUrl();
@@ -29,7 +30,7 @@ const App = () => {
 
   return (
     <div className='App'>
-
+      <Search />
     </div>
   );
 }
