@@ -8,3 +8,4 @@ created with Create react app
 - [ ] Add animation to aid UX
 - [ ] Add creative feature for search
 - [ ] Unit test components
+- [ ] Logout after token is expired
