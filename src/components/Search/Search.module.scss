@@ -1,0 +1,23 @@
+.search {
+  display: flex;
+
+  &__input {
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    border: 1px solid #EEE;
+    box-sizing: border-box;
+    flex: 1 1 100%;
+    font-size: 20px;
+    height: 50px;
+    padding: 0 20px;
+  }
+
+  &__button {
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border: 1px solid #EEE;
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+  }
+}

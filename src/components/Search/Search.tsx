@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { IArtistResponse } from '../../interfaces/artist';
 import { ITrackResponse } from '../../interfaces/track';
+import styles from './Search.module.scss';
 
 const constructQueryParameters = (searchQuery: string) => {
     return new URLSearchParams({
         q: searchQuery,
-        type: 'track,artist'
+        type: 'track,artist',
+        limit: '10',
     }).toString();
 }
 
@@ -55,7 +57,9 @@ const Search = () => {
                 }),
             }
 
-            console.log(mappedSearchResults)
+            console.log({
+                [`${searchQueryParameters}`]: mappedSearchResults
+            })
 
         } catch(error) {}
 
@@ -63,12 +67,12 @@ const Search = () => {
     }
 
     return (
-        <div>
-            <form action="POST" onSubmit={submitHandler}>
-                <input onChange={inputChangeHandler} type="text" name="searchquery" />
-                <button>Zoek</button>
+        <>
+            <form className={styles.search} onSubmit={submitHandler}>
+                <input className={styles.search__input} onChange={inputChangeHandler} type="search" name="searchquery" />
+                <button className={styles.search__button}>Zoek</button>
             </form>
-        </div>
+        </>
     )
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import createLoginUrl from './util/createLoginUrl';
 import extractFromHash from '../../util/extractFromHash';
 import Search from '../Search/Search';
+import styles from './App.module.scss';
 
 const ACCESSTOKEN_LOCALSTORAGE_KEY = 'accessToken';
 const loginUrl = createLoginUrl();
@@ -23,13 +24,13 @@ const App = () => {
   }, []);
 
   if (!isLoggedIn) return (
-      <div className='App'>
+      <div className={styles.app}>
         <a href={loginUrl}>Login</a>
       </div>
   )
 
   return (
-    <div className='App'>
+    <div className={styles.app}>
       <Search />
     </div>
   );
