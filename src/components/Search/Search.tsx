@@ -13,7 +13,7 @@ const constructQueryParameters = (searchQuery: string) => {
 
 const Search = () => {
     const [searchQuery, setSearhQuery] = useState<string>('');
-    const { setSearchResult } = useAppContext();
+    const { setSearchResult, setQuery } = useAppContext();
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearhQuery(event.target.value);
@@ -22,18 +22,16 @@ const Search = () => {
     const submitHandler = async(event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const searchQueryParameters = constructQueryParameters(searchQuery);
+        setQuery(searchQuery);
+
+        // const searchQueryParameters = constructQueryParameters(searchQuery);
 
         // TODO: Look for URL in localStorage first
-        const searchResult = await search(searchQueryParameters);
-        // console.log({
-        //     [`${searchQueryParameters}`]: searchResult
-        // })
+        // const searchResult = await search(searchQueryParameters);
 
-        if (searchResult) {
-            // TODO: add searchQueryParameters to localStorage
-            setSearchResult(searchResult);
-        }
+        // if (searchResult) {
+        //     setSearchResult(searchResult);
+        // }
     }
 
     return (

@@ -7,6 +7,13 @@ export interface SearchResult {
 }
 
 const search = async (searchQueryParameters: string): Promise<SearchResult | undefined> => {
+    // TODO: Look for URL in localStorage first
+    // console.log({
+    //     [`${searchQueryParameters}`]: searchResult
+    // })
+
+    // TODO: Safe URL in localStorage
+
     try {
         const response = await fetch(`${process.env.REACT_APP_SPOTIFY_SEARCH_API_URL}?${searchQueryParameters}`, {
             headers: {

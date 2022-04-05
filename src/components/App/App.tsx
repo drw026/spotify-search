@@ -13,6 +13,7 @@ const loginUrl = createLoginUrl();
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [searchResult, setSearchResult] = useState<SearchResult>();
+  const [query, setQuery] = useState<string>('');
 
   useEffect(() => {
     // TODO: Refactor
@@ -35,7 +36,7 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <appContext.Provider value={{ searchResult, setSearchResult }}>
+      <appContext.Provider value={{ searchResult, setSearchResult, query, setQuery }}>
         <Search />
         <Result />
       </appContext.Provider>
