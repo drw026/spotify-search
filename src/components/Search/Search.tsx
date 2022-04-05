@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { IArtistResponse } from '../../interfaces/artist';
-import { ITrackResponse } from '../../interfaces/track';
+import search from './service/search';
 import styles from './Search.module.scss';
+import { useAppContext } from '../App/App.context';
 
 const constructQueryParameters = (searchQuery: string) => {
     return new URLSearchParams({
@@ -13,6 +13,7 @@ const constructQueryParameters = (searchQuery: string) => {
 
 const Search = () => {
     const [searchQuery, setSearhQuery] = useState<string>('');
+    const { setSearchResult } = useAppContext();
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearhQuery(event.target.value);
@@ -24,46 +25,15 @@ const Search = () => {
         const searchQueryParameters = constructQueryParameters(searchQuery);
 
         // TODO: Look for URL in localStorage first
+        const searchResult = await search(searchQueryParameters);
+        // console.log({
+        //     [`${searchQueryParameters}`]: searchResult
+        // })
 
-        try {
-            const response = await fetch(`${process.env.REACT_APP_SPOTIFY_SEARCH_API_URL}?${searchQueryParameters}`, {
-                headers: {
-                    Authorization: `Bearer ${window.localStorage.getItem('accessToken') || ''}`
-                }
-            });
-
-            const jsonResponse = await response.json();
-            const mappedSearchResults = {
-                artists: jsonResponse.artists.items.map((artist: IArtistResponse) => {
-                    return {
-                        id: artist.id,
-                        name: artist.name,
-                        url: artist.external_urls.spotify,
-                    }
-                }),
-                tracks: jsonResponse.tracks.items.map((track: ITrackResponse) => {
-                   return {
-                       id: track.id,
-                       duration_ms: track.duration_ms,
-                       name: track.name,
-                       album: {
-                           album_type: track.album.album_type,
-                           name: track.album.name,
-                           release_date: track.album.release_date,
-                       },
-                       artists: track.artists.map((artist: IArtistResponse) => artist.name),
-                       url: track.external_urls.spotify,
-                   }
-                }),
-            }
-
-            console.log({
-                [`${searchQueryParameters}`]: mappedSearchResults
-            })
-
-        } catch(error) {}
-
-        // TODO: add searchQueryParameters to localStorage
+        if (searchResult) {
+            // TODO: add searchQueryParameters to localStorage
+            setSearchResult(searchResult);
+        }
     }
 
     return (

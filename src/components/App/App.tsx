@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import createLoginUrl from './util/createLoginUrl';
 import extractFromHash from '../../util/extractFromHash';
 import Search from '../Search/Search';
+import appContext from './App.context';
 import styles from './App.module.scss';
+import Result from '../Result/Result';
+import { SearchResult } from '../Search/service/search';
 
 const ACCESSTOKEN_LOCALSTORAGE_KEY = 'accessToken';
 const loginUrl = createLoginUrl();
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [searchResult, setSearchResult] = useState<SearchResult>();
 
   useEffect(() => {
     // TODO: Refactor
@@ -31,7 +35,10 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <Search />
+      <appContext.Provider value={{ searchResult, setSearchResult }}>
+        <Search />
+        <Result />
+      </appContext.Provider>
     </div>
   );
 }
