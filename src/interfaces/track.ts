@@ -25,4 +25,5 @@ export interface ITrack {
         release_dat: string;
     };
     artists: string[];
+    url: string;
 }
