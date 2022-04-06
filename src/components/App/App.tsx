@@ -4,15 +4,13 @@ import extractFromHash from '../../util/extractFromHash';
 import Search from '../Search/Search';
 import appContext from './App.context';
 import styles from './App.module.scss';
-import Result from '../Result/Result';
-import { SearchResult } from '../Search/service/search';
+import ResultContainer from '../Result/Result.container';
 
 const ACCESSTOKEN_LOCALSTORAGE_KEY = 'accessToken';
 const loginUrl = createLoginUrl();
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [searchResult, setSearchResult] = useState<SearchResult>();
   const [query, setQuery] = useState<string>('');
 
   useEffect(() => {
@@ -36,9 +34,9 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <appContext.Provider value={{ searchResult, setSearchResult, query, setQuery }}>
+      <appContext.Provider value={{ query, setQuery }}>
         <Search />
-        <Result />
+        <ResultContainer />
       </appContext.Provider>
     </div>
   );

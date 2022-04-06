@@ -1,11 +1,8 @@
-import { createContext, useContext } from 'react';
-import { SearchResult } from '../Search/service/search';
+import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
 export interface AppState  {
     query: string;
-    setQuery: React.Dispatch<React.SetStateAction<string>>;
-    searchResult: SearchResult | undefined;
-    setSearchResult:  React.Dispatch<React.SetStateAction<SearchResult | undefined>>;
+    setQuery: Dispatch<SetStateAction<string>>;
 }
 
 export const appContext = createContext<AppState | null>(null);

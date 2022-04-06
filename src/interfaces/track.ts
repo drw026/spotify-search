@@ -22,7 +22,7 @@ export interface ITrack {
     album: {
         album_type: string;
         name: string;
-        release_dat: string;
+        release_date: string;
     };
     artists: string[];
     url: string;
