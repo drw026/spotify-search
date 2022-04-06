@@ -10,7 +10,7 @@ const Login = ({ loginUrl }: Props) => {
         <div className={styles.login}>
             <div className={styles.login__inner}>
                 <h1 className={styles.login__title}>Spotify search</h1>
-                <p>Om deze Spotify zoek service te kunnen gebruiken moet je inloggen.</p>
+                <p>Login om deze Spotify zoek service te kunnen gebruiken.</p>
                 <a className={styles.login__button} href={loginUrl}>Inloggen</a>
             </div>
         </div>

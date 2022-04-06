@@ -23,6 +23,6 @@ input:focus, textarea:focus, select:focus{
   outline: none;
 }
 
-.root {
+#root {
   height: 100%;
 }
