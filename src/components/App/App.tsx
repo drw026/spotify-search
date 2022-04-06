@@ -5,6 +5,7 @@ import Search from '../Search/Search';
 import appContext from './App.context';
 import styles from './App.module.scss';
 import ResultContainer from '../Result/Result.container';
+import Login from '../Login/Login';
 
 const ACCESSTOKEN_LOCALSTORAGE_KEY = 'accessToken';
 const loginUrl = createLoginUrl();
@@ -27,9 +28,9 @@ const App = () => {
   }, []);
 
   if (!isLoggedIn) return (
-      <div className={styles.app}>
-        <a href={loginUrl}>Login</a>
-      </div>
+      <>
+        <Login loginUrl={loginUrl} />
+      </>
   )
 
   return (
