@@ -51,6 +51,12 @@ const extractDataFromResponse = (response: SearchResponse): SearchResult => {
     }
 }
 
+const getResultFromSearchHistory = (searchQueryParameters: string, history: string | null): Record<string, SearchResult> | undefined => {
+  return history && Array.isArray(history)
+      ? history.find((item: Record<string, SearchResult>) => item.hasOwnProperty(searchQueryParameters))
+      : undefined;
+}
+
 const useSearchResults = (query: string) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [data, setData] = useState<SearchResult | undefined>(undefined);
@@ -59,6 +65,11 @@ const useSearchResults = (query: string) => {
     const fetchResult = async (searchQueryParameters: string) => {
         try {
             setIsLoading(true)
+            const searchHistory = JSON.parse(window.localStorage.getItem('searchHistory') || '[]');
+            const queryInSearchHistory = getResultFromSearchHistory(searchQueryParameters, searchHistory);
+
+            if (queryInSearchHistory) return setData(Object.values(queryInSearchHistory)[0]);
+
             const response = await fetch(`${process.env.REACT_APP_SPOTIFY_SEARCH_API_URL}?${searchQueryParameters}`, {
                 headers: {
                     Authorization: `Bearer ${window.localStorage.getItem('accessToken') || ''}`
@@ -66,6 +77,9 @@ const useSearchResults = (query: string) => {
             });
             const jsonResponse = await response.json();
             const searchResult = extractDataFromResponse(jsonResponse);
+
+            searchHistory.push({ [`${searchQueryParameters}`]: searchResult });
+            window.localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
             setData(searchResult);
         } catch (error) {
