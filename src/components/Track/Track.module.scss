@@ -1,0 +1,20 @@
+.track {
+  font-size: 1rem;
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+
+  &__title {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  &__duration {
+    margin: 0;
+  }
+
+  &__album {
+    font-size: 0.8rem;
+    margin: 5px 0 0 0;
+  }
+}
