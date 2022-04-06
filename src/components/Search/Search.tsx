@@ -18,7 +18,13 @@ const Search = () => {
     return (
         <>
             <form className={styles.search} onSubmit={submitHandler}>
-                <input className={styles.search__input} onChange={inputChangeHandler} type="search" name="searchquery" />
+                <input
+                    className={styles.search__input}
+                    onChange={inputChangeHandler}
+                    type="search"
+                    name="searchquery"
+                    autoComplete="off"
+                />
                 <button className={styles.search__button}>Zoek</button>
             </form>
         </>
