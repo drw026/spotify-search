@@ -1,20 +1,37 @@
+@import '../../assets/scss/vars';
+
 .track {
-  font-size: 1rem;
-  display: block;
-  padding: 5px;
+  align-items: center;
+  color: $grey;
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: space-between;
+  padding: 10px;
   text-decoration: none;
 
+  &:hover {
+    background-color: #EEE;
+    transition: background-color .2s ease-in-out;
+  }
+
   &__title {
+    color: $black;
     font-size: 1rem;
     margin: 0;
   }
 
   &__duration {
+  }
+
+  &__artists {
     margin: 0;
   }
 
   &__album {
-    font-size: 0.8rem;
-    margin: 5px 0 0 0;
+    padding: 0 15px;
+  }
+
+  &__mainInfo {
+
   }
 }

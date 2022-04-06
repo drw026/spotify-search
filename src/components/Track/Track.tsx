@@ -8,7 +8,7 @@ interface Props {
 
 const convertMstoTime = (miliseconds: number): string => {
     const date = new Date(miliseconds)
-    return `${date.getMinutes()}:${date.getSeconds()}`;
+    return `${date.getMinutes()}:${date.getSeconds().toString().padStart(2, '0')}`;
 }
 
 const Track = ({ data }: Props) => {
@@ -16,9 +16,12 @@ const Track = ({ data }: Props) => {
 
     return (
         <a className={styles.track} href={url} target="_blank" rel="noreferrer">
-            <h3 className={styles.track__title}>{name} - {artists.join(', ')}</h3>
+            <div className={styles.track__mainInfo}>
+                <h3 className={styles.track__title}>{name}</h3>
+                <p className={styles.track__artists}>{artists.join(', ')}</p>
+            </div>
+            <div className={styles.track__album}>{album.name} ({album.release_date})</div>
             <div className={styles.track__duration}>{convertMstoTime(duration_ms)}</div>
-            <div className={styles.track__album}>From: {album.name} ({album.release_date})</div>
         </a>
     );
 };
