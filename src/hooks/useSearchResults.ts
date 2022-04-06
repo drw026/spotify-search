@@ -85,7 +85,9 @@ const useSearchResults = (query: string) => {
         } catch (error) {
             setError(error as Error)
         } finally {
-            setIsLoading(false)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 500);
         }
     }
 
