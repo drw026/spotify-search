@@ -2,7 +2,7 @@
 created with Create react app
 
 ## TODO
-- [ ] Store search query and cache response in LocalStorage
+- [x] Store search query and cache response in LocalStorage
 - [ ] Fix React 18
 - [ ] Use speech-to-text API for searching
 - [ ] Add animation to aid UX
