@@ -20,7 +20,7 @@ const Track = ({ data }: Props) => {
                 <h3 className={styles.track__title}>{name}</h3>
                 <p className={styles.track__artists}>{artists.join(', ')}</p>
             </div>
-            <div className={styles.track__album}>{album.name} ({album.release_date})</div>
+            <div className={styles.track__album}>{album.name}</div>
             <div className={styles.track__duration}>{convertMstoTime(duration_ms)}</div>
         </a>
     );

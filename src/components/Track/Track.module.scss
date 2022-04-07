@@ -5,6 +5,7 @@
   color: $grey;
   display: flex;
   font-size: 0.9rem;
+  gap: 15px;
   justify-content: space-between;
   padding: 10px;
   text-decoration: none;
@@ -28,10 +29,10 @@
   }
 
   &__album {
-    padding: 0 15px;
+    flex: 1 1 100%;
   }
 
   &__mainInfo {
-
+    flex: 1 1 400px;
   }
 }
