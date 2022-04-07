@@ -19,7 +19,7 @@ interface SearchResult {
 
 const constructQueryParameters = (searchQuery: string) => {
     return new URLSearchParams({
-        q: searchQuery,
+        q: searchQuery.toLowerCase(),
         type: TYPE_SEARCH,
         limit: LIMIT.toString(),
     }).toString();
