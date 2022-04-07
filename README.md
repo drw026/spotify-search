@@ -2,10 +2,9 @@
 created with Create react app
 
 ## TODO
-- [x] Store search query and cache response in LocalStorage
-- [ ] Fix React 18
-- [ ] Use speech-to-text API for searching
 - [ ] Add animation to aid UX
 - [ ] Add creative feature for search
 - [ ] Unit test components
 - [ ] Logout after token is expired
+- [x] Store search query and cache response in LocalStorage
+- [x] Use speech-to-text API for searching

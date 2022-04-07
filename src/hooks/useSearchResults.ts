@@ -58,7 +58,7 @@ const getResultFromSearchHistory = (searchQueryParameters: string, history: stri
 }
 
 const useSearchResults = (query: string) => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [data, setData] = useState<SearchResult | undefined>(undefined);
     const [error, setError] = useState<Error | null>(null);
 

@@ -2,6 +2,7 @@ import React from 'react';
 import ArtistContainer from '../Artist/Artist.container';
 import TrackContainer from '../Track/Track.container';
 import useSearchResults from '../../hooks/useSearchResults';
+import Loader from '../Loader/Loader';
 
 interface Props {
     query: string;
@@ -11,7 +12,7 @@ const Result = ({ query }: Props) => {
     const { error, data, isLoading } = useSearchResults(query);
 
     if (error) return null;
-    if (isLoading) return (<div>Loading...</div>);
+    if (isLoading) return (<Loader />);
 
     return (
         <>

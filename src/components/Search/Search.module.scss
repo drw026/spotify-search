@@ -24,7 +24,7 @@
     border: 2px solid $black;
     cursor: pointer;
     height: 50px;
-    width: 100px;
+    padding: 0 20px 0 15px;
 
     &:hover {
       border: 2px solid $green-highlight;

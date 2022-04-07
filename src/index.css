@@ -25,4 +25,5 @@ input:focus, textarea:focus, select:focus{
 
 #root {
   height: 100%;
+  overflow-y:scroll;
 }
