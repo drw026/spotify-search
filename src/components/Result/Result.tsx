@@ -21,6 +21,7 @@ const Result = ({ query }: Props) => {
 
     return (
         <div className={styles.result}>
+            {data && (<p>Gevonden resultaten voor: <strong>{data.query}</strong></p>)}
             {data && data.artists.length > 0 && (<ArtistContainer artists={data.artists} />)}
             {data && data.tracks.length > 0 && (<TrackContainer tracks={data.tracks} />)}
         </div>
