@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {IArtist, IArtistResponse} from '../interfaces/artist';
 import {ITrack, ITrackResponse} from '../interfaces/track';
 import { LIMIT, TYPE_SEARCH } from '../config/search';
@@ -13,6 +13,7 @@ interface SearchResponse {
 }
 
 interface SearchResult {
+    query: string;
     artists: Array<IArtist>;
     tracks: Array<ITrack>;
 }
@@ -25,13 +26,15 @@ const constructQueryParameters = (searchQuery: string) => {
     }).toString();
 }
 
-const extractDataFromResponse = (response: SearchResponse): SearchResult => {
+const extractDataFromResponse = (response: SearchResponse, query: string): SearchResult => {
     return {
+        query,
         artists: response.artists.items.map((artist: IArtistResponse) => {
             return {
                 id: artist.id,
                 name: artist.name,
                 url: artist.external_urls.spotify,
+                imageUrl: artist.images.pop()?.url
             }
         }),
         tracks: response.tracks.items.map((track: ITrackResponse) => {
@@ -62,7 +65,7 @@ const useSearchResults = (query: string) => {
     const [data, setData] = useState<SearchResult | undefined>(undefined);
     const [error, setError] = useState<Error | null>(null);
 
-    const fetchResult = async (searchQueryParameters: string) => {
+    const fetchResult = useCallback(async (searchQueryParameters: string) => {
         try {
             setIsLoading(true)
             const searchHistory = JSON.parse(window.localStorage.getItem('searchHistory') || '[]');
@@ -76,7 +79,7 @@ const useSearchResults = (query: string) => {
                 }
             });
             const jsonResponse = await response.json();
-            const searchResult = extractDataFromResponse(jsonResponse);
+            const searchResult = extractDataFromResponse(jsonResponse, query);
 
             searchHistory.push({ [`${searchQueryParameters}`]: searchResult });
             window.localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
@@ -89,14 +92,14 @@ const useSearchResults = (query: string) => {
                 setIsLoading(false)
             }, 500);
         }
-    }
+    }, [query]);
 
     useEffect(() => {
         if (!query) return;
         const searchQueryParameters = constructQueryParameters(query);
 
         fetchResult(searchQueryParameters);
-    }, [query])
+    }, [query, fetchResult])
 
     return {data, error, isLoading};
 };
