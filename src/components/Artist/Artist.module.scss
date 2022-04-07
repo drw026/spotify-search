@@ -1,0 +1,26 @@
+@import '../../assets/scss/vars';
+
+.artist {
+  text-align: center;
+
+  &__name {
+    color: $black;
+    display: inline-block;
+    margin: 5px 0 0 0;
+    text-decoration: none;
+  }
+
+  &__image {
+    display: block;
+    background: $black;
+    background-size: contain;
+    height: 100px;
+    margin: 0 auto;
+    width: 100px;
+
+    &:hover {
+      transform: scale(1.10);
+      transition: transform .1s ease-in-out;
+    }
+  }
+}
