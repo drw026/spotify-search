@@ -14,6 +14,8 @@ const Search = () => {
     const submitHandler = async(event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
         setQuery(searchQuery);
+        setSearhQuery('');
+        event.target.reset();
     }
 
     const setSearchQueryFromSpeech = (query: string) => {
