@@ -1,0 +1,65 @@
+@import '../../assets/scss/vars';
+
+.microphone {
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  background: $black;
+  border: 2px solid $black;
+  cursor: pointer;
+  height: 50px;
+  padding: 0 10px;
+
+  &:hover {
+    border: 2px solid $green-highlight;
+    background-color: $green-highlight;
+    transition: background-color .1s ease-in-out, border .1s ease-in-out;
+  }
+
+  &__icon {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 16px;
+    height: 12px;
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 120px;
+    border: 2px solid;
+    border-top: 0;
+    margin-top: 3px
+  }
+
+  &__icon::after,
+  &__icon::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute
+  }
+
+  &__icon::after {
+    border: 2px solid;
+    width: 8px;
+    height: 18px;
+    left: 2px;
+    top: -10px;
+    border-radius: 4px
+  }
+
+  &__icon::before {
+    width: 10px;
+    height: 4px;
+    top: 12px;
+    left: 1px;
+    border-right: 4px solid transparent;
+    box-shadow:
+            0 2px 0,
+            inset -2px 0 0
+  }
+
+  &__on {
+    background-color: $red;
+    border: 2px solid $red;
+  }
+}

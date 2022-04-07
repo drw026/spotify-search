@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Search.module.scss';
 import { useAppContext } from '../App/App.context';
+import Microphone from '../Microphone/Microphone';
 
 const Search = () => {
     const [searchQuery, setSearhQuery] = useState<string>('');
@@ -15,6 +16,10 @@ const Search = () => {
         setQuery(searchQuery);
     }
 
+    const setSearchQueryFromSpeech = (query: string) => {
+        setSearhQuery(query);
+    }
+
     return (
         <>
             <form className={styles.search} onSubmit={submitHandler}>
@@ -26,6 +31,7 @@ const Search = () => {
                     autoComplete="off"
                     autoFocus
                 />
+                <Microphone setQuery={setSearchQueryFromSpeech} />
                 <button className={styles.search__button}>Zoek</button>
             </form>
         </>
