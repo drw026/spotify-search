@@ -24,6 +24,7 @@ const Search = () => {
                     type="search"
                     name="searchquery"
                     autoComplete="off"
+                    autoFocus
                 />
                 <button className={styles.search__button}>Zoek</button>
             </form>
