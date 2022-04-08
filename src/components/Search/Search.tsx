@@ -32,6 +32,7 @@ const Search = () => {
                         type="search"
                         name="searchquery"
                         autoComplete="off"
+                        placeholder={`Zoek naar een artiest of track naam b.v.: "Joe" of "Ain't No Sunshine"`}
                         autoFocus
                     />
                 </div>
