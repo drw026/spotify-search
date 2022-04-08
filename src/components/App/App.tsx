@@ -7,7 +7,7 @@ import styles from './App.module.scss';
 import ResultContainer from '../Result/Result.container';
 import Login from '../Login/Login';
 
-const ACCESSTOKEN_LOCALSTORAGE_KEY = 'accessToken';
+const ACCESSTOKEN_SESSION_KEY = 'accessToken';
 const loginUrl = createLoginUrl();
 
 const App = () => {
@@ -16,12 +16,12 @@ const App = () => {
 
   useEffect(() => {
     // TODO: Refactor
-    const accessTokenFromLocalStorage = window.localStorage.getItem(ACCESSTOKEN_LOCALSTORAGE_KEY);
+    const accessTokenFromLocalStorage = window.sessionStorage.getItem(ACCESSTOKEN_SESSION_KEY);
     const hash = window.location.hash;
 
     if (accessTokenFromLocalStorage) return setIsLoggedIn(true);
     if (hash) {
-      window.localStorage.setItem(ACCESSTOKEN_LOCALSTORAGE_KEY, extractFromHash(hash, 'access_token'))
+      window.sessionStorage.setItem(ACCESSTOKEN_SESSION_KEY, extractFromHash(hash, 'access_token'))
       window.location.hash = '';
       setIsLoggedIn(true);
     }
