@@ -15,11 +15,10 @@ const App = () => {
   const [query, setQuery] = useState<string>('');
 
   useEffect(() => {
-    // TODO: Refactor
-    const accessTokenFromLocalStorage = window.sessionStorage.getItem(ACCESSTOKEN_SESSION_KEY);
+    const accessTokenFromSessionStorage = window.sessionStorage.getItem(ACCESSTOKEN_SESSION_KEY);
     const hash = window.location.hash;
 
-    if (accessTokenFromLocalStorage) return setIsLoggedIn(true);
+    if (accessTokenFromSessionStorage) return setIsLoggedIn(true);
     if (hash) {
       window.sessionStorage.setItem(ACCESSTOKEN_SESSION_KEY, extractFromHash(hash, 'access_token'))
       window.location.hash = '';
