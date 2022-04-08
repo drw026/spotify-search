@@ -6,7 +6,7 @@ import appContext from './App.context';
 import styles from './App.module.scss';
 import ResultContainer from '../Result/Result.container';
 import Login from '../Login/Login';
-import { readCookie, setCookie } from '../../util/readCookie';
+import { readCookie, setCookie } from '../../util/cookie';
 
 const ACCESSTOKEN_SESSION_KEY = 'accessToken';
 const VALIDACCESS_COOKIE_KEY = 'validAccess';
