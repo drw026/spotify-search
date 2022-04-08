@@ -19,8 +19,9 @@
   &__icon {
     border-bottom-left-radius: 120px;
     border-bottom-right-radius: 120px;
-    border-top: 0;
     border: 2px solid;
+    border-top: 0;
+    box-sizing: border-box;
     display: block;
     height: 12px;
     margin-top: 3px;
@@ -31,6 +32,7 @@
 
   &__icon::after,
   &__icon::before {
+    box-sizing: border-box;
     content: "";
     display: block;
     position: absolute
