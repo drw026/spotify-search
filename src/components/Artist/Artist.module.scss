@@ -11,7 +11,9 @@
   }
 
   &__image {
+    border-radius: 10px;
     display: block;
+    cursor: pointer;
     background: $black;
     background-size: contain;
     height: 100px;
