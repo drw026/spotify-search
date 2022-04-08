@@ -25,14 +25,16 @@ const Search = () => {
     return (
         <>
             <form className={styles.search} onSubmit={submitHandler}>
-                <input
-                    className={styles.search__input}
-                    onChange={inputChangeHandler}
-                    type="search"
-                    name="searchquery"
-                    autoComplete="off"
-                    autoFocus
-                />
+                <div className={styles.search__inputWrapper}>
+                    <input
+                        className={styles.search__input}
+                        onChange={inputChangeHandler}
+                        type="search"
+                        name="searchquery"
+                        autoComplete="off"
+                        autoFocus
+                    />
+                </div>
                 <Microphone setQuery={setSearchQueryFromSpeech} />
                 <button className={styles.search__button}>Zoek</button>
             </form>
