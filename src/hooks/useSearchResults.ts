@@ -18,6 +18,10 @@ interface SearchResult {
     tracks: Array<ITrack>;
 }
 
+interface SearchHistoryItem {
+    [key: string]: SearchResult
+}
+
 const constructQueryParameters = (searchQuery: string) => {
     return new URLSearchParams({
         q: searchQuery.toLowerCase(),
@@ -54,9 +58,9 @@ const extractDataFromResponse = (response: SearchResponse, query: string): Searc
     }
 }
 
-const getResultFromSearchHistory = (searchQueryParameters: string, history: string | null): Record<string, SearchResult> | undefined => {
-  return history && Array.isArray(history)
-      ? history.find((item: Record<string, SearchResult>) => item.hasOwnProperty(searchQueryParameters))
+const getResultFromSearchHistory = (searchQueryParameters: string, history: Array<SearchHistoryItem> | null): SearchHistoryItem | undefined => {
+  return history
+      ? history.find((item: SearchHistoryItem) => item.hasOwnProperty(searchQueryParameters))
       : undefined;
 }
 
