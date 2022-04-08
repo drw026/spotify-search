@@ -75,9 +75,10 @@ const useSearchResults = (query: string) => {
 
             const response = await fetch(`${process.env.REACT_APP_SPOTIFY_SEARCH_API_URL}?${searchQueryParameters}`, {
                 headers: {
-                    Authorization: `Bearer ${window.localStorage.getItem('accessToken') || ''}`
+                    Authorization: `Bearer ${window.sessionStorage.getItem('accessToken') || ''}`
                 }
             });
+
             const jsonResponse = await response.json();
             const searchResult = extractDataFromResponse(jsonResponse, query);
 
