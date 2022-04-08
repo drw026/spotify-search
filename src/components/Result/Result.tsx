@@ -12,18 +12,29 @@ interface Props {
 const Result = ({ query }: Props) => {
     const { error, data, isLoading } = useSearchResults(query);
 
-    if (error) return null;
+    if (error) {
+        return (
+            <p>Er is een fout opgetreden.</p>
+        )
+    }
+
     if (isLoading) return (
         <div className={`${styles.result} ${styles.result__loading}`}>
             <Loader />
         </div>
     );
 
+    if (!data) return null;
+
+    if (data.artists.length === 0 && data.tracks.length === 0) return (
+        <p>Geen resultaten gevonden.</p>
+    );
+
     return (
         <div className={styles.result}>
-            {data && (<p>Gevonden resultaten voor: <strong>{data.query}</strong></p>)}
-            {data && data.artists.length > 0 && (<ArtistContainer artists={data.artists} />)}
-            {data && data.tracks.length > 0 && (<TrackContainer tracks={data.tracks} />)}
+            <p>Gevonden resultaten voor: <strong>{data.query}</strong></p>
+            {data.artists.length > 0 && (<ArtistContainer artists={data.artists} />)}
+            {data.tracks.length > 0 && (<TrackContainer tracks={data.tracks} />)}
         </div>
     );
 }

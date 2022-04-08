@@ -1,9 +1,10 @@
 .result {
   position: relative;
-  height: 100%;
-  max-height: 200px;
+  margin: 0 0 50px 0;
 
   &__loading {
+    height: 100%;
+    max-height: 200px;
     padding: 50px 0;
     text-align: center;
   }
