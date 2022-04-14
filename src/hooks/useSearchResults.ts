@@ -84,6 +84,11 @@ const useSearchResults = (query: string) => {
             });
 
             const jsonResponse = await response.json();
+
+            if (response.status === 400) {
+                throw new Error('INVALID_BEARER_TOKEN');
+            }
+
             const searchResult = extractDataFromResponse(jsonResponse, query);
 
             searchHistory.push({ [`${searchQueryParameters}`]: searchResult });
