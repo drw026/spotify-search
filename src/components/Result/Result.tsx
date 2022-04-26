@@ -13,6 +13,14 @@ const Result = ({ query }: Props) => {
     const { error, data, isLoading } = useSearchResults(query);
 
     if (error) {
+        if (error.message === 'INVALID_BEARER_TOKEN') {
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+
+            return (<p>Jouw sessie is verlopen. Je wordt binnen enkele seconden automatisch naar het inlogscherm doorverwezen.</p>);
+        }
+
         return (
             <p>Er is een fout opgetreden.</p>
         )
